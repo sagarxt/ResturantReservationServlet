@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,11 +49,12 @@ public class Register extends HttpServlet {
 		
 		//Register the user using registerUser method
 		if (new UserDAO().registerUser(user)) {
-			//If register successful forwarded to user-dashboard
-
+			//If register successful forwarded to login.jsp
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
+			requestDispatcher.forward(request, response);
 		} else {
 			//If register failed include error message
-
+			out.print("Reg failed");
 		}
 	}
 

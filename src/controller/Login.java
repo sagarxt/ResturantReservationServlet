@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,23 +31,25 @@ public class Login extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
-		//Validate for Admin with username and password if don't match with admin details check for user details 
+		// Validate for Admin with username and password if don't match with admin
+		// details check for user details
 		if (email.equals("admin@oupp.com") && password.equals("password")) {
-			//If admin forward to admin-dashboard
-			
-		
+			// If admin forward to admin-dashboard
+
 		} else {
-			//Validate the user is available or not using validateUser method
+			// Validate the user is available or not using validateUser method
 			User user = new UserDAO().validateUser(email, password);
-			if(user != null) {
-				//If validated user forwarded to user-dashboard
+			if (user != null) {
+				// If validated user forwarded to user-dashboard
 				HttpSession session = request.getSession();
-				//save userId to session 
+				// save userId to session
 				session.setAttribute("userId", user.getUserId());
-				
-			}else {
-				//If Invalid include Invalid Details message
-				
+				session.setAttribute("name", user.getName());
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("home.jsp");
+				requestDispatcher.forward(request, response);
+			} else {
+				// If Invalid include Invalid Details message
+
 			}
 		}
 
