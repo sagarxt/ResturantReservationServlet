@@ -34,9 +34,13 @@ public class NewReservation extends HttpServlet {
 		// Generate random userId
 		Random random = new Random();
 		int reservationId = random.nextInt();
-
-		LocalDate date = LocalDate.parse(request.getParameter("date"));
-		LocalTime time = LocalTime.parse(request.getParameter("time"));
+		
+		String stringDate = request.getParameter("date");
+		LocalDate date = LocalDate.parse(stringDate);
+		
+		String stringTime = request.getParameter("time");
+		LocalTime time = LocalTime.parse(stringTime);
+		
 		int partySize = Integer.parseInt(request.getParameter("partySize"));
 		String customerName = request.getParameter("customerName");
 		String phoneNumber = request.getParameter("phoneNumber");
@@ -46,13 +50,16 @@ public class NewReservation extends HttpServlet {
 
 		int tableId;
 
+		System.out.println("PartySize : " + partySize);
 		ArrayList<Table> tables = new TableDAO().getTablesByCapacity(partySize);
 		Iterator<Table> iterator = tables.iterator();
-		if (iterator.hasNext()) {
+		
+		tableId = new TableDAO().getAvailableTable(partySize);
+		if (tableId != -1) {
 			// Give a tableId of selected capacity
-			Table table = iterator.next();
-			tableId = table.getTableId();
-
+			
+			System.out.println("Table Id : " + tableId);
+			
 			//Bind data to Reservation object
 			Reservation reservation = new Reservation();
 			reservation.setReservationId(reservationId);
@@ -65,8 +72,11 @@ public class NewReservation extends HttpServlet {
 			reservation.setUserId(userId);
 			reservation.setStatus("active");
 			
+			new TableDAO().bookTable(tableId);
+			
 			if(new ReservationDAO().newReservation(reservation)) {
 				//Reservation Successful message
+				System.out.println("Sucx : " + reservationId);
 			}else {
 				//Reservation failed message
 			}

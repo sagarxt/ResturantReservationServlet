@@ -479,20 +479,6 @@ body {
     border-color: #ddff00;
 }
 
-/* Hide the minutes part of the time input */
-input[type="time"]::-webkit-datetime-edit-minute-field {
-    display: none;
-    visibility: hidden;
-}
-
-input[type="time"]::-webkit-datetime-edit-ampm-field {
-    margin-left: 5px; /* Adjust styling as needed */
-}
-input[type="time"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
-
 
 </Style>
 
@@ -528,19 +514,19 @@ input[type="time"]::-webkit-calendar-picker-indicator {
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <input name="customerName" type="text" class="form-control" id="name" placeholder="Your Name">
                                             <label for="name">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input type="text" class="form-control" id="email" placeholder="Your Email" pattern="[0-9]{10}" title="Enter a phone number of 10 digits">
-                                            <label for="email">Your Phone Number</label>
+                                            <input name="phoneNumber" type="text" class="form-control" id="email" placeholder="Your Email" pattern="[0-9]{10}" title="Enter a phone number of 10 digits">
+                                            <label for="phoneNumber">Your Phone Number</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating" id="date3" data-target-input="nearest">
-                                            <input type="date" class="form-control" id="dateInput" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
+                                            <input name="date" type="date" class="form-control" id="dateInput" placeholder="Check In" data-target="#date3" data-toggle="datetimepicker" />
                                             <label for="checkin">Booking Date</label>
                                         </div>
                                         <script>
@@ -551,14 +537,14 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 	                                    </div>
                                     <div class="col-md-6">
                                         <div class="form-floating" id="date4" data-target-input="nearest">
-                                            <input type="time" class="form-control" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
+                                            <input name="time" type="time" class="form-control" id="checkout" placeholder="Check Out" data-target="#date4" data-toggle="datetimepicker" />
                                             <label for="checkout">Booking Time</label>
                                         </div>
                                     </div>
                                    
                                     <div class="col-12">
                                         <div class="form-floating">
-                                            <select class="form-select" id="select3">
+                                            <select class="form-select" id="select3" name="partySize">
                                               <option value="2">Couple (2 persons)</option>
                                               <option value="4">Family and Friends (4 persons)</option>
                                               <option value="6">Family and Friends (6 persons)</option>
@@ -569,12 +555,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
                                             </select>
                                             <label for="select3">Table</label>
                                           </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating">
-                                            <textarea class="form-control" placeholder="Special Request" id="message" style="height: 100px"></textarea>
-                                            <label for="message">Special Request</label>
-                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
