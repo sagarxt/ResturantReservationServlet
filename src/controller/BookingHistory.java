@@ -25,7 +25,6 @@ public class BookingHistory extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 		
-
 		HttpSession session = request.getSession();
 		int userId = (Integer) session.getAttribute("userId");
 		

@@ -46,7 +46,7 @@ public class ReservationDAO {
 		boolean flag = false;
 		try {
 			Connection connection = DBConnection.getConnection();
-			String sql = "UPDATE reservation SET date=?,time=?,partySize=?,customerName=?,phoneNumber=?,tableId=? WHERE reservationId=?";
+			String sql = "UPDATE reservation SET date=?,time=?,partySize=?,customerName=?,phoneNumber=?,tableId=?,status=? WHERE reservationId=?";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setDate(1, Date.valueOf(reservation.getDate()));
@@ -55,7 +55,8 @@ public class ReservationDAO {
 			preparedStatement.setString(4, reservation.getCustomerName());
 			preparedStatement.setString(5, reservation.getPhoneNumber());
 			preparedStatement.setInt(6, reservation.getTableId());
-			preparedStatement.setInt(7, reservationId);
+			preparedStatement.setString(7, reservation.getStatus());
+			preparedStatement.setInt(8, reservationId);
 
 			int affectedRows = preparedStatement.executeUpdate();
 
@@ -72,13 +73,16 @@ public class ReservationDAO {
 		boolean flag = false;
 		try {
 			Connection connection = DBConnection.getConnection();
-			String sql = "UPDATE reservation SET status=? WHERE reservationId=?";
+			String sql = "UPDATE reservation SET status=? WHERE reservationId=? AND (status='active' OR status='pending')";
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, "canceled");
 			preparedStatement.setInt(2, reservationId);
 
 			int affectedRows = preparedStatement.executeUpdate();
+
+			int tableId = new ReservationDAO().getReservationbyId(reservationId).getTableId();
+			new TableDAO().freeTable(tableId);
 
 			if (affectedRows > 0) {
 				flag = true;
@@ -100,6 +104,9 @@ public class ReservationDAO {
 			preparedStatement.setInt(2, reservationId);
 
 			int affectedRows = preparedStatement.executeUpdate();
+
+			int tableId = new ReservationDAO().getReservationbyId(reservationId).getTableId();
+			new TableDAO().freeTable(tableId);
 
 			if (affectedRows > 0) {
 				flag = true;
@@ -173,7 +180,6 @@ public class ReservationDAO {
 	}
 
 	public ArrayList<Reservation> getReservationsByUserId(int userId) {
-		Reservation reservation = new Reservation();
 		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 
 		try {
@@ -185,6 +191,7 @@ public class ReservationDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
+				Reservation reservation = new Reservation();
 				reservation.setReservationId(resultSet.getInt("reservationId"));
 				reservation.setDate(resultSet.getDate("date").toLocalDate());
 				reservation.setTime(resultSet.getTime("time").toLocalTime());

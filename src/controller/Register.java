@@ -30,7 +30,7 @@ public class Register extends HttpServlet {
 
 		//Generate random userId
 		Random random = new Random();
-		int userId = random.nextInt();
+		int userId = random.nextInt(Integer.MAX_VALUE);
 		
 		//Fetch data from web page
 		String name = request.getParameter("name");

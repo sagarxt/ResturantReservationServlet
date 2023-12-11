@@ -1,3 +1,5 @@
+<%@page import="dao.ReservationDAO"%>
+<%@page import="model.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -5,7 +7,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>OUPP-Offbeat Underground Pub and Party</title>
+    <title>Edit Booking</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -183,10 +185,15 @@
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <span class="fs-4 text-uppercase" style="color: red; font-weight: 500;">OUPP</span><span class="fs-4 text-uppercase" style="font-weight: 500;"> RESTURANT</span>
                 </a>
-                <div class="col-md-3 text-end">
-                    <button type="button" class="btn btn-outline-primary me-2">Booking History</button>
-                    <button type="button" class="btn btn-primary">Log out</button>
-                  </div>
+                
+                    <div class="col-md-4 text-end">
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="#" class="nav-link px-2 text-secondary">Hi! <% String name = (String)session.getAttribute("name"); %>
+            <%= name %></a></li>
+                        <a href="bookingHistory"><button type="button" class="btn btn-outline-primary me-2">Booking History</button></a>
+                        <a href="logout"><button href="logout" type="button" class="btn btn-primary">Log out</button></a>
+                    </ul>
+                </div>
             </header>
         </div>
         <div class="container-xxl p-0">
@@ -202,47 +209,66 @@
 
                             <div>
                                 <table class="table table-striped">
-                                  <thead>
-                                  <tr>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
-                                  </tr>
-                                  </thead>
+                                  
                                   <tbody>
                                   <tr>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td>Couples</td>
+                                    <td>2 People</td>
+                                    <td>Rs 1499.00</td>
                                   </tr>
                                   <tr>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
+                                    <td>Family and Friends</td>
+                                    <td>4 People</td>
+                                    <td>Rs 2499.00</td>
                                   </tr>
                                   <tr>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
+                                    <td>Family and Friends</td>
+                                    <td>6 People</td>
+                                    <td>Rs 3499.00</td>
                                   </tr>
+                                  <tr>
+                                    <td>Family and Friends</td>
+                                    <td>10 People</td>
+                                    <td>Rs 4999.00</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Party or Event</td>
+                                    <td>20 People</td>
+                                    <td>Rs 8999.00</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Party or Event</td>
+                                    <td>30 People</td>
+                                    <td>Rs 12499.00</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Party or Event</td>
+                                    <td>50 People</td>
+                                    <td>Rs 19999.00</td>
+                                  </tr>
+                                  
                                   </tbody>
                                 </table>
                                 </div>
                         </div>
                     </div>
+                    <% 		int reservationId = Integer.parseInt(request.getParameter("reservationId")); 
+                    Reservation reservation = new ReservationDAO().getReservationbyId(reservationId); %>
                     <div class="col-lg-6">
                         <div class=" #cb2b2b">
-                            <form action="newReservation" method="post">
+                            <form action="updateReservation" method="post">
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
-                                            <input name="customerName" type="text" class="form-control" id="name" placeholder="Your Name">
+                                            <input name="customerName" type="text" class="form-control" id="name" placeholder="Your Name"
+                                            pattern="[A-Z a-z]{5-30}" title="Only Characters allowed" value="<%= reservation.getCustomerName() %>">
                                             <label for="name">Your Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-floating">
                                             <input name="phoneNumber" type="text" class="form-control" id="email" placeholder="Your Email"
-                                                pattern="[0-9]{10}" title="Enter a phone number of 10 digits">
+                                                pattern="[0-9]{10}" title="Enter a phone number of 10 digits" value="<%= reservation.getPhoneNumber() %>">
                                             <label for="email">Your Phone Number</label>
                                         </div>
                                     </div>
@@ -250,7 +276,7 @@
                                         <div class="form-floating" id="date3" data-target-input="nearest">
                                             <input name="date" type="date" class="form-control" id="dateInput"
                                                 placeholder="Check In" data-target="#date3"
-                                                data-toggle="datetimepicker" />
+                                                data-toggle="datetimepicker" value="<%= reservation.getDate() %>"/>
                                             <label for="checkin">Booking Date</label>
                                         </div>
                                         <script>
@@ -263,7 +289,7 @@
                                         <div class="form-floating" id="date4" data-target-input="nearest">
                                             <input name="time" type="time" class="form-control" id="checkout"
                                                 placeholder="Check Out" data-target="#date4"
-                                                data-toggle="datetimepicker" />
+                                                data-toggle="datetimepicker" value="<%= reservation.getTime() %>"/>
                                             <label for="checkout">Booking Time</label>
                                         </div>
                                     </div>
@@ -282,8 +308,9 @@
                                             <label for="select3">Table</label>
                                         </div>
                                     </div>
+                                    <input type="hidden" name="reservationId" value="<%= reservation.getReservationId()%>">
                                     <div class="col-12">
-                                        <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                                        <button class="btn btn-primary w-100 py-3" type="submit">Update</button>
                                     </div>
                                 </div>
                             </form>

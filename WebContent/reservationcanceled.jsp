@@ -1,14 +1,11 @@
-<%@page import="java.util.Iterator"%>
-<%@page import="model.Reservation"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>Booking History</title>
+    <title>Reservation Canceled</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -190,7 +187,7 @@
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="#" class="nav-link px-2 text-secondary">Hi! <% String name = (String)session.getAttribute("name"); %>
             <%= name %></a></li>
-                        
+                        <a href="bookingHistory"><button type="button" class="btn btn-outline-primary me-2">Booking History</button></a>
                         <a href="logout"><button href="logout" type="button" class="btn btn-primary">Log out</button></a>
                     </ul>
                 </div>
@@ -200,71 +197,21 @@
         <!-- Booking Start -->
         <div class="container-xxl py-5">
             <div class="container">
-                <div class="row g-5">
-
-                            <div>
-                                <table class="table table-striped">
-                                  <thead>
-                                  <tr>
-                                    <th scope="col">Customer Name</th>
-                                    <th scope="col">Phone Number</th>
-                                    <th scope="col">People</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Time</th>
-                                    <th scope="col">Table No</th>
-                                    <th scope="col">Reservation ID</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Edit</th>
-                                    <th scope="col">Cancel</th>
-                                  </tr>
-                                  </thead>
-                                  <tbody>
-                                  <% ArrayList<Reservation> reservations = (ArrayList<Reservation>) request.getAttribute("reservations");
-                                  	//for(Reservation reservation : reservations){
-                                  	  Iterator iterator = reservations.iterator();
-                                  	  while(iterator.hasNext()){ 
-                                  	  Reservation reservation = (Reservation) iterator.next();
-	                                  	String status = reservation.getStatus();
-	                                    String rowColor = "";
-	                                    if (status.equals("canceled")) {
-	                                        rowColor = "red";
-	                                    } else if (status.equals("pending")) {
-	                                        rowColor = "yellow";
-	                                    } else if (status.equals("completed")) {
-	                                        rowColor = "green";
-	                                    } else {
-	                                    	rowColor = "cyan";
-	                                    }
-                                  	  %>
-                                  	<tr style="background-color: <%= rowColor %>;">
-                                    <td><%= reservation.getCustomerName() %></td>
-                                    <td><%= reservation.getPhoneNumber() %></td>
-                                    <td><%= reservation.getPartySize() %></td>
-                                    <td><%= reservation.getDate() %></td>
-                                    <td><%= reservation.getTime() %></td>
-                                    <% if(reservation.getStatus().equals("canceled")){ %>
-                                    	<td> Canceled </td>
-                                    <% }else if(reservation.getTableId() != -1) { %>
-                                    	<td><%= reservation.getTableId()%></td>
-                                    <% }else{ %>
-                                    	<td> Waiting </td>
-                                    <% }  %>
-                                    <td><%= reservation.getReservationId()%></td>
-                                    <td><%= reservation.getStatus() %>
-							        <% if (reservation.getStatus().equals("active") || reservation.getStatus().equals("pending")) { %>
-							            <td><a href="updatereservation.jsp?reservationId=<%=reservation.getReservationId() %>">Edit</a></td>
-							            <td><a href="cancelReservation?reservationId=<%=reservation.getReservationId() %>">Cancel</a></td>
-							        <% } else { %>
-							            <td></td>
-							            <td></td>
-							        <% } %>
-							        </tr>
-                                          <%} %>
-                                  </tbody>
-                                </table>
+                <div class="text-center">
+                    <img src="/img/Successful.jpg" alt="404" style="height: 200px; width: 200px;">
+                    <h3>Booking Canceled</h3><br>
+                </div><br>
+                <div class=" col-md-4 mb-2 justify-content-center">
+                    <a href="home.jsp"><button href="home.jsp" class="btn btn-primary w-100 py-3" style="margin-left: 420px;" type="submit">Home</button></a>
+                </div>
                                 </div>
+                            </form>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+        <!-- Booking End -->
     </div>
 
     <!-- JavaScript Libraries -->
