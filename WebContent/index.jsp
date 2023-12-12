@@ -17,7 +17,7 @@
       <div class="nav-bar">
         <div class="brand">
           <a href="#hero">
-            <h1><span>OUPP</span>Resturant </h1>
+            <h1><span>OUPP</span>Restaurant </h1>
           </a>
         </div>
         <div class="nav-list">
@@ -62,21 +62,21 @@
       </div>
       <div class="service-bottom">
         <div class="service-item">
-          <div class="icon"><img src="./img/couple.png" /></div>
+          <div class="icon"><img src="https://i.postimg.cc/15PvYfDp/couple.jpg" /></div>
           <h2>Couple Table</h2>
           <p>you can book your table for couple , you will conforatable spend you own time with your partner</p>
         </div>
         <div class="service-item">
-          <div class="icon"><img src="./img/family.jpg" /></div>
+          <div class="icon"><img src="https://i.postimg.cc/pLckTC4Z/family.jpg" /></div>
           <h2>Family Table</h2>
           <p>you can book your table for couple , you will conforatable spend you own time with your partner</p>        </div>
         <div class="service-item">
-          <div class="icon"><img src="./img/friends.jpg" /></div>
+          <div class="icon"><img src="https://i.postimg.cc/RCwPRcJS/friends.jpg" /></div>
           <h2>Party Table</h2>
           <p>you can book your table for couple , you will conforatable spend you own time with your partner</p>
         </div>
         <div class="service-item">
-          <div class="icon"><img src="./img/special.jpg" /></div>
+          <div class="icon"><img src="https://i.postimg.cc/XqKQYb6G/special.jpg" /></div>
           <h2>special Table</h2>
           <p>you can book your table for couple , you will conforatable spend you own time with your partner</p>
         </div>
@@ -90,7 +90,7 @@
     <div class="about container">
       <div class="col-left">
         <div class="about-img">
-          <img src="./img/ab.jpeg" alt="img">
+          <img src="https://i.postimg.cc/jS2KNTQP/about.jpg" alt="img">
         </div>
       </div>
       <div class="col-right">
@@ -146,7 +146,7 @@
   <section id="footer">
     <div class="footer container">
       <div class="brand">
-        <h1><span>O</span>UPP <span>R</span>estruant</h1>
+        <h1><span>O</span>UPP <span>R</span>estaurant</h1>
       </div>
       <h2>WE Alwaya with you </h2>
       <div class="social-icon">

@@ -198,7 +198,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center">
-                    <img src="/img/Failed.png" alt="404" style="height: 100px; width: 100px;"><br><br><br>
+                    <img src="https://i.postimg.cc/fR8w6fxh/Failed.png" alt="404" style="height: 100px; width: 100px;"><br><br><br>
                     <h3>Booking Failed</h3>
                 </div><br>
                 <div class=" col-md-4 mb-2 justify-content-center">

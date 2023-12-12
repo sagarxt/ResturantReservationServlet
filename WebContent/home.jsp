@@ -15,7 +15,7 @@
       <div class="nav-bar">
         <div class="brand">
           <a href="#hero">
-            <h1><span>OUPP</span>Resturant </h1>
+            <h1><span>OUPP</span>Restaurant </h1>
           </a>
         </div>
         <div class="nav-list">
@@ -24,9 +24,9 @@
           </div>
           <ul>
             
-            <li><a href="#" data-after="About">Hi! <% String name = (String)session.getAttribute("name"); %>
+            <li><a href="#" data-after="Name">Hi! <% String name = (String)session.getAttribute("name"); %>
             <%= name %></a></li>
-            <li><a href="bookingHistory" data-after="Contact">Booking History</a></li>
+            <li><a href="bookingHistory" data-after="history">Booking History</a></li>
             <li><a href="logout" data-after="Logout">Logout</a></li>
           </ul>
         </div>
@@ -41,7 +41,7 @@
         <h2>Come Hungry, Leave Happy<span></span></h2>
         <h2>Your Restaurant, Your Choice  <span></span></h2>
         <h2>Taste the World Here <span></span></h2>
-        <a href="newreservation.jsp" type="button" class="cta">View Tables</a>
+        <a href="newreservation.jsp" type="button" class="cta">Book Tables</a>
       </div>
     </div>
   </section>

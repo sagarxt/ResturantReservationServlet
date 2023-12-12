@@ -198,7 +198,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center">
-                    <img src="/img/Pending.png" alt="404" style="height: 100px; width: 100px;"><br><br><br>
+                    <img src="https://i.postimg.cc/X7cNgbqq/Pending.png" alt="404" style="height: 100px; width: 100px;"><br><br><br>
                     <h3>Booking Pending</h3>
                     <h4>Booking ID: <% int reservationId = Integer.parseInt(request.getParameter("reservationId")); %>
                     <%= reservationId %></h4>

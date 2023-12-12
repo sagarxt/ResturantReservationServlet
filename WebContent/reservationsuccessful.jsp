@@ -198,7 +198,8 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center">
-                    <img src="/img/Successful.jpg" alt="404" style="height: 200px; width: 200px;">
+                    <img src="https://i.postimg.cc/t4qqSMn5/Successful.jpg" alt="404" style="height: 200px; width: 200px;">
+                    
                     <h3>Booking Successful</h3>
                     <h4>Booking ID: <% int reservationId = Integer.parseInt(request.getParameter("reservationId")); %>
                     <%= reservationId %></h4>

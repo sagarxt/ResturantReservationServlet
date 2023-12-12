@@ -81,7 +81,6 @@ public class UpdateReservation extends HttpServlet {
 		} else {
 			// No table available on selected capacity pending
 			reservation.setStatus("pending");
-			System.out.println(reservation.getStatus());
 			new ReservationDAO().updateReservation(reservationId, reservation);
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("reservationpending.jsp?reservationId=" + reservationId);
