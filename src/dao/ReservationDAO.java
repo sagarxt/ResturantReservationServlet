@@ -118,7 +118,6 @@ public class ReservationDAO {
 	}
 
 	public ArrayList<Reservation> allReservations() {
-		Reservation reservation = new Reservation();
 		ArrayList<Reservation> reservations = new ArrayList<>();
 
 		try {
@@ -129,6 +128,8 @@ public class ReservationDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
+				Reservation reservation = new Reservation();
+
 				reservation.setReservationId(resultSet.getInt("reservationId"));
 				reservation.setDate(resultSet.getDate("date").toLocalDate());
 				reservation.setTime(resultSet.getTime("time").toLocalTime());
@@ -188,6 +189,36 @@ public class ReservationDAO {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setInt(1, userId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Reservation reservation = new Reservation();
+				reservation.setReservationId(resultSet.getInt("reservationId"));
+				reservation.setDate(resultSet.getDate("date").toLocalDate());
+				reservation.setTime(resultSet.getTime("time").toLocalTime());
+				reservation.setPartySize(resultSet.getInt("partySize"));
+				reservation.setCustomerName(resultSet.getString("customerName"));
+				reservation.setPhoneNumber(resultSet.getString("phoneNumber"));
+				reservation.setTableId(resultSet.getInt("tableId"));
+				reservation.setUserId(resultSet.getInt("userId"));
+				reservation.setStatus(resultSet.getString("status"));
+
+				reservations.add(reservation);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return reservations;
+	}
+	
+	public ArrayList<Reservation> getPendingReservations() {
+		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+
+		try {
+			Connection connection = DBConnection.getConnection();
+			String sql = "SELECT * FROM reservation WHERE status = 'pending'";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {

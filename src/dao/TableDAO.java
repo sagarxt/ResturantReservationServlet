@@ -121,4 +121,48 @@ public class TableDAO {
 		}
 		return tables;
 	}
+
+	public boolean isAvailable(int tableId) {
+		boolean flag = false;
+		try {
+			Connection connection = DBConnection.getConnection();
+			String sql = "SELECT * FROM tables WHERE tableId=?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, tableId);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if (resultSet.next()) {
+				flag = true;
+			}
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return flag;
+	}
+
+	public ArrayList<Table> getTables() {
+		ArrayList<Table> tables = new ArrayList<Table>();
+
+		try {
+			Connection connection = DBConnection.getConnection();
+			String sql = "SELECT * FROM tables";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				Table table = new Table();
+
+				table.setTableId(resultSet.getInt("tableId"));
+				table.setCapacity(resultSet.getInt("capacity"));
+				table.setAvailable(resultSet.getBoolean("available"));
+
+				tables.add(table);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tables;
+	}
 }

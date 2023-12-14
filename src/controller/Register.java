@@ -50,7 +50,7 @@ public class Register extends HttpServlet {
 		//Register the user using registerUser method
 		if (new UserDAO().registerUser(user)) {
 			//If register successful forwarded to login.jsp
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("loginsuccess.jsp");
 			requestDispatcher.forward(request, response);
 		} else {
 			//If register failed include error message

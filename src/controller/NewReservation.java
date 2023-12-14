@@ -3,8 +3,6 @@ package controller;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
@@ -18,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import dao.ReservationDAO;
 import dao.TableDAO;
 import model.Reservation;
-import model.Table;
 
 @WebServlet("/newReservation")
 public class NewReservation extends HttpServlet {

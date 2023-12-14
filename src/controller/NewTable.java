@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,16 +25,27 @@ public class NewTable extends HttpServlet {
 		
 		int tableId = Integer.parseInt(request.getParameter("tableId"));
 		int capacity = Integer.parseInt(request.getParameter("capacity"));
+		boolean available = Boolean.getBoolean(request.getParameter("available"));
 		
 		Table table = new Table();
 		table.setTableId(tableId);
 		table.setCapacity(capacity);
-		table.setAvailable(true);
+		table.setAvailable(available);
 		
-		if(new TableDAO().newTable(table)) {
-			//Table added successfully
+		if(new TableDAO().isAvailable(tableId)) {
+			//failed
+			RequestDispatcher dispatcher = request.getRequestDispatcher("failed.jsp");
+			dispatcher.forward(request, response);
 		}else {
-			//failed to create table
+			if(new TableDAO().newTable(table)) {
+				//Table added successfully
+				RequestDispatcher dispatcher = request.getRequestDispatcher("success.jsp");
+				dispatcher.forward(request, response);
+			}else {
+				//failed to create table
+				RequestDispatcher dispatcher = request.getRequestDispatcher("failed.jsp");
+				dispatcher.forward(request, response);
+			}
 		}
 	}
 

@@ -5,13 +5,16 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Reservation Canceled</title>
+    <title>Registration Successful</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+    
+    <meta http-equiv="refresh" content="3; url = login.jsp" />
+  
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -183,14 +186,6 @@
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <span class="fs-4 text-uppercase" style="color: red; font-weight: 500;">OUPP</span><span class="fs-4 text-uppercase" style="font-weight: 500;"> RESTURANT</span>
                 </a>
-                  <div class="col-md-4 text-end">
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="#" class="nav-link px-2 text-secondary">Hi! <% String name = (String)session.getAttribute("name"); %>
-            <%= name %></a></li>
-                        <a href="bookingHistory"><button type="button" class="btn btn-outline-primary me-2">Booking History</button></a>
-                        <a href="logout"><button href="logout" type="button" class="btn btn-primary">Log out</button></a>
-                    </ul>
-                </div>
             </header>
         </div>
         <div class="container-xxl p-0">
@@ -198,11 +193,13 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="text-center">
-                    <img src="https://i.postimg.cc/fR8w6fxh/Failed.png" alt="404" style="height: 200px; width: 200px;">
-                    <h3>Booking Canceled</h3><br>
+                    <img src="https://i.postimg.cc/t4qqSMn5/Successful.jpg" alt="404" style="height: 200px; width: 200px;">
+                    
+                    <h3>Registration Successful</h3>
+                    
                 </div><br>
                 <div class=" col-md-4 mb-2 justify-content-center">
-                    <a href="home.jsp"><button href="home.jsp" class="btn btn-primary w-100 py-3" style="margin-left: 420px;" type="submit">Home</button></a>
+                    <a href="login.jsp"><button href="home.jsp" class="btn btn-primary w-100 py-3" style="margin-left: 420px;" type="submit">Login Now</button></a>
                 </div>
                                 </div>
                             </form>

@@ -3,8 +3,6 @@ package controller;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import dao.ReservationDAO;
 import dao.TableDAO;
 import model.Reservation;
-import model.Table;
 
 @WebServlet("/updateReservation")
 public class UpdateReservation extends HttpServlet {
@@ -41,9 +38,9 @@ public class UpdateReservation extends HttpServlet {
 		String customerName = request.getParameter("customerName");
 		String phoneNumber = request.getParameter("phoneNumber");
 
-		HttpSession session = request.getSession();
-		int userId = (Integer) session.getAttribute("userId");
-		
+//		HttpSession session = request.getSession();
+//		int userId = (Integer) session.getAttribute("userId");
+//		
 		int tableId;
 
 		tableId = new TableDAO().getAvailableTable(partySize);
@@ -57,7 +54,7 @@ public class UpdateReservation extends HttpServlet {
 		reservation.setCustomerName(customerName);
 		reservation.setPhoneNumber(phoneNumber);
 		reservation.setTableId(tableId);
-		reservation.setUserId(userId);
+//		reservation.setUserId(userId);
 		if (tableId != -1) {
 			
 			reservation.setStatus("active");

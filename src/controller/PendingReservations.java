@@ -13,22 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import dao.ReservationDAO;
 import model.Reservation;
 
-@WebServlet("/allReservations")
-public class AllReservations extends HttpServlet {
+@WebServlet("/pendingReservations")
+public class PendingReservations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AllReservations() {
-		super();
-	}
+    public PendingReservations() {
+        super();
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		ArrayList<Reservation> reservations = new ReservationDAO().allReservations();
+		ArrayList<Reservation> reservations = new ReservationDAO().getPendingReservations();
 		request.setAttribute("reservations", reservations);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("allreservations.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("pendingreservations.jsp");
 		dispatcher.forward(request, response);
 	}
 

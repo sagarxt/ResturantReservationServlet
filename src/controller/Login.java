@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,7 +25,6 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -35,7 +33,8 @@ public class Login extends HttpServlet {
 		// details check for user details
 		if (email.equals("admin@oupp.com") && password.equals("password")) {
 			// If admin forward to admin-dashboard
-
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("admin.jsp");
+			requestDispatcher.forward(request, response);
 		} else {
 			// Validate the user is available or not using validateUser method
 			User user = new UserDAO().validateUser(email, password);
@@ -51,7 +50,6 @@ public class Login extends HttpServlet {
 				// If Invalid include Invalid Details message
 				RequestDispatcher requestDispatcher = request.getRequestDispatcher("loginfailed.jsp");
 				requestDispatcher.forward(request, response);
-
 			}
 		}
 

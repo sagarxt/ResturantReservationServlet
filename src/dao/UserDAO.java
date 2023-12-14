@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.User;
 
 public class UserDAO {
-	//Using this method we register an user to database by User object
+	// Using this method we register an user to database by User object
 	public boolean registerUser(User user) {
 		boolean flag = false;
 		try {
@@ -33,7 +34,8 @@ public class UserDAO {
 		return flag;
 	}
 
-	//Using this method validate the user is available or not it return User object if not available return null
+	// Using this method validate the user is available or not it return User object
+	// if not available return null
 	public User validateUser(String email, String password) {
 
 		User user = new User();
@@ -60,5 +62,29 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		return user;
+	}
+
+	public ArrayList<User> getUsers() {
+		ArrayList<User> users = new ArrayList<User>();
+
+		try {
+			Connection connection = DBConnection.getConnection();
+			String sql = "SELECT * FROM user";
+
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				User user = new User();
+				user.setUserId(resultSet.getInt("userId"));
+				user.setName(resultSet.getString("name"));
+				user.setEmail(resultSet.getString("email"));
+				user.setPhoneNumber(resultSet.getString("phoneNumber"));
+
+				users.add(user);
+			}
+		} catch (SQLException exception) {
+			exception.printStackTrace();
+		}
+		return users;
 	}
 }
